@@ -9,6 +9,7 @@ const getPostsRequest = () => {
 
 export const GET_POSTS_SUCCESS ='GET_POSTS_SUCCESS';
 const getPostsSuccess = (json) => {
+    console.log(json)
     return {
         type: GET_POSTS_SUCCESS,
         posts:json,
@@ -27,9 +28,16 @@ const getPostsFailure = (error) => {
 export const getPosts = () => {
     return (dispatch) => {
         dispatch(getPostsRequest())
-        return axios.get(`http://localhost:3000/api/v1/posts`)
-        .then(res => 
-            dispatch(getPostsSuccess(res.data))
+        return axios.get('https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?',{
+            params:{
+                applicationId:'1081419145541583133',
+                keyword:'サッカー'
+            }
+        })
+        .then(res => {
+            console.log(res)
+            dispatch(getPostsSuccess(res.data.Items))
+            }
             ).catch(err => 
                 dispatch(getPostsFailure(err)))
     }

@@ -1,6 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
+import '../App.css';
 import DoAsynchronous from './doasynchronous'
+import React from 'react'
 
 function App() {
   return (

@@ -1,35 +1,39 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getPosts } from '../actions/'
-import posts from '../reeduders/asynchronous'
+
 
 const DoAsynchronous = (props) => {
+    
 
+    const dosome = () => {
+        console.log(props.items)
+    }
 
     return (
-        <>
+        <React.Fragment>
+            <button onClick={props.getPosts}></button>
+            <button onClick={dosome}></button>
             <ul>
-            {
-            props.items.map((item, index) => {
-                <li key={index}>{item}</li>
-             })
-            }
-        </ul>
-        </>
+                {props.items.map((item,index) => {
+                    return <li key={index}>{item}</li>
+                })}
+            </ul>
+        </React.Fragment>
         
     )
 }
 
 
 const mapStateToProps = state => ({
-    items:state.asynchronous.items
+    items:state.Asynchronous[0].items
 })
 
-const mapDispatchToProps = dispatch ({
+const mapDispatchToProps = dispatch => ({
     getPosts:() => dispatch(getPosts())
 })
 
-export default connect(mapDispatchToProps,mapDispatchToProps)(DoAsynchronous)
+export default connect(mapStateToProps,mapDispatchToProps)(DoAsynchronous)
 
 
 

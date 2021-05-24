@@ -6,7 +6,7 @@ const initialState = {
 }
 
 
-const posts =  (state = [initialState], action) => {
+const Asynchronous = (state = [initialState], action) => {
     switch (action.type) {
         case GET_POSTS_REQUEST:
             return [...state,
@@ -16,11 +16,14 @@ const posts =  (state = [initialState], action) => {
                 }
             ]
         case GET_POSTS_SUCCESS:
+            let itemName = action.posts.map((item)=>{
+                    return item.Item.itemName
+            })
+            console.log(itemName)
             return [
-                ...state,
                 {
                     isFetching:false,
-                    items: action.posts,
+                    items: itemName,
                     lastUpdated: action.receivedAt
                 }
             ]
@@ -37,4 +40,4 @@ const posts =  (state = [initialState], action) => {
     }
 }
 
-export default posts
+export default Asynchronous
